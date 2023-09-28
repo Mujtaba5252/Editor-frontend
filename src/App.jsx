@@ -3,10 +3,12 @@ import "./App.css";
 import LandingPage from "./pages/LandingPage";
 import TinyMce from "./components/TinyMce/TinyMce";
 import { Toaster } from "react-hot-toast";
+// import Practice from "./pages/Practice";
 
 function App() {
   return (
     <>
+      {/* <Practice /> */}
       <Toaster position="top-right" />
       <BrowserRouter>
         <Routes>

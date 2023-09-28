@@ -8,7 +8,7 @@ import { v4 as uuidV4 } from "uuid";
 import toast from "react-hot-toast";
 import "./skin.min.css";
 
-const socket = io("http://localhost:3001"); // Replace with your server URL
+const socket = io("https://editor-backend-a78cd66ab850.herokuapp.com"); // Replace with your server URL
 
 const RealTimeEditor = () => {
   const { id: documentId } = useParams(); //for getting id from url
