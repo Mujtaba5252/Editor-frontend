@@ -23,8 +23,16 @@ const RealTimeEditor = () => {
     });
 
     socket.on("receive-changes", (delta) => {
-      // Apply changes received from other users
-      setContent(delta);
+      //give code to apply changes to the editor in real time
+
+      if (delta)
+        setContent((prevContent) => {
+          return prevContent + delta;
+        });
+
+      setContent((prevContent) => {
+        return prevContent + delta;
+      });
     });
 
     return () => {
