@@ -14,15 +14,26 @@ const RealTimeEditor = () => {
   const { id: documentId } = useParams(); //for getting id from url
   const [content, setContent] = useState("");
   const navigate = useNavigate();
+  useEffect(() => {
+    if (content == null || socket == null) return;
+    const interval = setInterval(() => {
+      socket.emit("save-document", content);
+    }, 1000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [content, socket]);
 
   useEffect(() => {
-    socket.emit("get-document", documentId);
-
     socket.on("load-document", (data) => {
       setContent(data);
     });
+    socket.emit("get-document", documentId);
 
     socket.on("receive-changes", (delta) => {
+      setContent(delta);
+    });
+    socket.on("text-change", (delta) => {
       setContent(delta);
     });
 
@@ -38,15 +49,6 @@ const RealTimeEditor = () => {
     socket.emit("send-changes", newContent);
   };
 
-  useEffect(() => {
-    if (content == null) return;
-    const interval = setInterval(() => {
-      socket.emit("save-document", content);
-    }, 1000);
-    return () => {
-      clearInterval(interval);
-    };
-  }, [content]);
   return (
     <div>
       <Typography

@@ -14,7 +14,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/documents/:id" element={<TextEditor />} />
+          <Route path="/documents/:id" element={<TinyMce />} />
         </Routes>
       </BrowserRouter>
     </>
