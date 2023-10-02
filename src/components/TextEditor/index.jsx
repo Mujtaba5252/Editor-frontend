@@ -36,7 +36,7 @@ const TextEditor = () => {
   }, [socket, quill, documentId]);
   //for socket connection
   useEffect(() => {
-    const s = io("http://localhost:3001");
+    const s = io("https://editor-backend-a78cd66ab850.herokuapp.com");
     setSocket(s);
 
     return () => {
